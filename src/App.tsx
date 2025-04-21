@@ -9,6 +9,7 @@ const PasswordGenerator = () => {
   const [password, setPassword] = useState('');
   const [isGenerateActive, setIsGenerateActive] = useState(false);
   const [isCopyActive, setIsCopyActive] = useState(false);
+  const [showNotification, setShowNotification] = useState(false);
 
   const generatePassword = () => {
     const lowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
@@ -30,6 +31,8 @@ const PasswordGenerator = () => {
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(password);
+    setShowNotification(true);
+    setTimeout(() => setShowNotification(false), 2000); // Hide notification after 2 seconds
   };
 
   const handleGenerateClick = () => {
@@ -46,8 +49,14 @@ const PasswordGenerator = () => {
 
   return (
     <div className="relative flex items-center justify-center min-h-screen bg-[#f5f5f5] text-[#333333]">
+      {/* Notification */}
+      {showNotification && (
+        <div className="absolute top-4 bg-green-500 text-white px-4 py-2 rounded shadow-md">
+          Password copied to clipboard!
+        </div>
+      )}
+
       {/* Decorative Elements */}
-      
       <div className="bg-[#ffffff] border-2 border-[#333333] p-8 w-96 text-center rounded-none shadow-[8px_8px_0px_#000000]">
         <h1 className="text-lg font-bold mb-6">🔒 PASSWORD GENERATOR</h1>
 
