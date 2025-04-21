@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FaInstagram, FaGithub, FaFacebook } from 'react-icons/fa';
 
 const PasswordGenerator = () => {
